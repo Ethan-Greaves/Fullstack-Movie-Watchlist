@@ -7,34 +7,35 @@
 
 // change the theme
 $theme-colors: (
-	"primary": #5f1519,
-	"danger": gold,
-	"success": green,
-	"dark": rgb(44, 44, 44)
+  "primary": #5f1519,
+  "secondary": gold,
+  "danger": gold,
+  "success": green,
+  "dark": rgb(44, 44, 44),
 );
 
 * {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-	min-height: 100vh;
+  min-height: 100vh;
 }
 
 .jumbotron {
-	padding: 2rem 1rem;
-	margin-bottom: 1rem;
-	// border-radius: 0.3rem;
+  padding: 2rem 1rem;
+  margin-bottom: 1rem;
+  // border-radius: 0.3rem;
 
-	&.jumbotron-primary {
-		background-color: map-get($theme-colors, "primary");
-	}
+  &.jumbotron-primary {
+    background-color: map-get($theme-colors, "primary");
+  }
 
-	&.jumbotron-dark {
-		background-color: map-get($theme-colors, "dark");
-	}
+  &.jumbotron-dark {
+    background-color: map-get($theme-colors, "dark");
+  }
 }
 
 @import "~bootstrap/scss/bootstrap.scss";

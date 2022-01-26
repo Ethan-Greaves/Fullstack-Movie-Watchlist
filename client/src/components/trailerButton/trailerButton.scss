@@ -1,0 +1,25 @@
+.trailer {
+	width: 100% !important;
+	height: 450px !important;
+}
+
+.modal-body {
+	padding: 0 !important;
+}
+
+.close {
+	position: absolute !important;
+	right: -50px !important;
+	top: 0 !important;
+	z-index: 999 !important;
+	font-size: 3rem !important;
+	font-weight: normal !important;
+	color: #fff !important;
+	opacity: 1 !important;
+	background-color: transparent !important;
+	border: none !important;
+
+	&:focus{
+	    border: none !important;
+	}
+}

@@ -6,7 +6,7 @@ import { StarsRating } from "../starsRating/starsRating";
 import "./review.scss";
 
 interface IReview {
-	avatar: string;
+	// avatar: string;
 	author: string;
 	rating: number;
 	text: string;
@@ -19,9 +19,9 @@ export const Review = (props: IReview) => {
 			<Accordion.Item eventKey={props.eventKey.toString()}>
 				<Accordion.Header>
 					<Row className="align-items-center w-100">
-						<Col lg={1}>
+						{/* <Col lg={1}>
 							<Avatar src={props.avatar} user={props.author} />
-						</Col>
+						</Col> */}
 						<Col>
 							<h4 className="mb-0">{props.author}</h4>
 						</Col>

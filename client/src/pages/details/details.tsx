@@ -1,19 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { Col, Container, Row, Button } from "react-bootstrap";
 import { useLocation } from "react-router-dom";
-import { AddButton } from "../../components/addButton/addButton";
+import { IconButton } from "../../components/addButton/iconButton";
 import { StarsRating } from "../../components/starsRating/starsRating";
 import { UseFetch } from "../../hooks/useFetch";
 import UseMovieDatabaseImg from "../../hooks/useMovieDatabaseImg";
 import UseReleaseYear from "../../hooks/useReleaseYear";
 import { PageAnimated } from "../../wrappers/pageAnimated";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus, faPlay } from "@fortawesome/free-solid-svg-icons";
 import "./details.scss";
 import { Review } from "../../components/review/review";
 import UseStarRating from "../../hooks/useStarRating";
-import { DetailsSection } from "../../wrappers/detailsSection";
+import { DetailsSection } from "../../wrappers/detailsSection/detailsSection";
 import { ExitButton } from "../../components/exitButton/exitButton";
 import { InfoList } from "../../components/infoList/infoList";
+import { RouteButton } from "../../components/routeButton/routeButton";
+import { TrailerButton } from "../../components/trailerButton/trailerButton";
 
 interface IMediaInfo {
 	title: string;
@@ -52,6 +54,13 @@ interface IReviews {
 	}[];
 }
 
+interface IVideos {
+	results: {
+		key: string;
+		type: string;
+	}[];
+}
+
 export const Details = () => {
 	const { pathname } = useLocation();
 	const id = pathname.split("/").at(-1);
@@ -64,6 +73,15 @@ export const Details = () => {
 	const reviews = UseFetch<IReviews>(
 		`https://api.themoviedb.org/3/movie/${id}/reviews?api_key=${process.env.REACT_APP_MOVIE_DATABASE_API_KEY}&language=en-US&page=1`
 	)[0];
+	const videos = UseFetch<IVideos>(
+		`https://api.themoviedb.org/3/movie/${id}/videos?api_key=${process.env.REACT_APP_MOVIE_DATABASE_API_KEY}&language=en-US`
+	)[0];
+	let trailer = undefined;
+	if (videos?.results.length !== 0) {
+		trailer = videos?.results.filter((obj) => {
+			return obj.type === "Trailer";
+		})[0].key;
+	}
 
 	const vote = media?.vote_average;
 	const director = credits?.crew.filter((obj) => {
@@ -115,9 +133,20 @@ export const Details = () => {
 							<InfoList title="Cast" arr={credits?.cast} />
 							<InfoList title="Director" arr={director} />
 
-							<div className="position-absolute bottom-0">
-								<AddButton link="/" />
-							</div>
+							<Row>
+								<Col lg={1}>
+									<div className="position-absolute bottom-0">
+										<RouteButton link="/" icon={faPlus} />
+									</div>
+								</Col>
+								<Col lg={1}>
+									<div className="position-absolute bottom-0">
+										{videos && (
+											<TrailerButton icon={faPlay} trailerSrc={trailer} hasTrailer={videos?.results.length !== 0} />
+										)}
+									</div>
+								</Col>
+							</Row>
 						</Col>
 					</Row>
 				</Container>
@@ -131,7 +160,7 @@ export const Details = () => {
 					reviewsWithRating?.slice(0, 3).map((review, i) => {
 						return (
 							<Review
-								avatar={review.author_details.avatar_path!}
+								// avatar={review.author_details.avatar_path!}
 								author={review.author!}
 								rating={review.author_details.rating!}
 								eventKey={i}
