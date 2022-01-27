@@ -21,7 +21,15 @@ const registerUser = async (req, res) => {
 };
 
 const loginUser = async (req, res) => {
+	const { username, password } = req.body;
+	try {
+		const user = await userModel.findOne({ where: { username } });
+		if (!user) return res.status(400).send("cannot find user");
+		if (await bcrypt.compare(password, user.password)) res.send("success");
+		else res.send("incorrect password");
+	} catch (error) {
+		res.status(400).send("error");
+	}
+};
 
-}
-
-module.exports = { registerUser };
+module.exports = { registerUser, loginUser };
