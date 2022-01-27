@@ -42,7 +42,6 @@ export const AddToList = () => {
 		setHasSearched(true);
 	};
 
-	console.log(movieResults);
 	return (
 		<PageAnimated>
 			<SearchBar

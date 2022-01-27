@@ -1,6 +1,6 @@
 const bcrypt = require("bcryptjs");
 const sequelize = require("sequelize");
-const db = require("../database");
+const db = require("../config/database");
 
 const userSchema = db.define(
 	"user",

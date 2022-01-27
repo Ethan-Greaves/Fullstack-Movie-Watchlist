@@ -2,8 +2,15 @@ const express = require("express");
 const app = express();
 const port = 3001;
 const users = require("./routes/users");
-const db = require("./database");
-
+const db = require("./config/database");
+const initPassport = require("./config/passport");
+const passport = require("passport");
+const bodyParser = require("body-parser");
+const crossDomain = require("./config/crossDomain");
+app.use(crossDomain);
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+// initPassport(passport);
 db.authenticate()
 	.then(() => console.log("db connected!"))
 	.catch((err) => console.log(`Error: ${err}`));
