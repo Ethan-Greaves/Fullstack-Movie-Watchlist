@@ -7,6 +7,7 @@ import UseMovieDatabaseImg from "../../hooks/useMovieDatabaseImg";
 import UseReleaseYear from "../../hooks/useReleaseYear";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { IconButton } from "../addButton/iconButton";
 
 interface ISearchCard {
 	title: string | undefined;
@@ -19,7 +20,7 @@ export const SearchCard = (props: ISearchCard) => {
 	return (
 		<Link to={`/details/${props.id}`}>
 			<Card className="card my-2">
-				<Row>
+				<Row className="align-items-center">
 					<Col lg={1} className="px-0">
 						<Card.Img
 							className="card-img img-fluid"
@@ -32,12 +33,8 @@ export const SearchCard = (props: ISearchCard) => {
 							<Card.Text>{UseReleaseYear(props.date)}</Card.Text>
 						</Card.Body>
 					</Col>
-					<Col lg={2}>
-						<Button variant="success" className="card-btn">
-							<motion.div whileHover={{ scale: 1.1 }}>
-								<FontAwesomeIcon icon={faPlus} size="3x"></FontAwesomeIcon>
-							</motion.div>
-						</Button>
+					<Col lg={1}>
+						<IconButton icon={faPlus} />
 					</Col>
 				</Row>
 			</Card>
