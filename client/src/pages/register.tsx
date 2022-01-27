@@ -8,18 +8,19 @@ export const Register = () => {
 	const [passwordInputValue, setPasswordInputValue] = useState<string>("");
 
 	const spaceBetween = "mt-4";
-	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		fetch("http://localhost:3001/api/users", {
+
+		axios({
 			method: "POST",
-			headers: {
-				Accept: "application/json",
-				"Content-Type": "application/json",
-			},
-			body: JSON.stringify({
+			data: {
 				username: usernameInputValue,
 				password: passwordInputValue,
-			}),
+			},
+			withCredentials: true,
+			url: "http://localhost:3001/api/users",
+		}).then((res) => {
+			console.log(res.data);
 		});
 
 		setUsernameInputValue("");

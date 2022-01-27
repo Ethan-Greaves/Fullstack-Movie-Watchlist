@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Route, Switch, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import { Archive } from "./pages/archive";
@@ -11,9 +11,12 @@ import { Series } from "./pages/series";
 import { Settings } from "./pages/settings";
 import { AddToList } from "./pages/addToList";
 import { PageAnimationProvider } from "./contexts/pageAnimationContext";
+import axios from "axios";
 
 function App() {
 	const location = useLocation();
+	
+
 	return (
 		<AnimatePresence exitBeforeEnter>
 			<Switch location={location} key={location.pathname}>

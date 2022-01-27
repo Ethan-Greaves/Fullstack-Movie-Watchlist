@@ -7,15 +7,6 @@ const sequelize = new Sequelize("moviewatchlistdb", "root", process.env.DB_PASS,
 	port: 3307,
 });
 
-// sequelize.sync();
-
-// async () => {
-// 	try {
-// 		await sequelize.authenticate();
-// 		console.log("Database successfully connected.");
-// 	} catch (error) {
-// 		console.error("Unable to connect to the database", error);
-// 	}
-// };
+sequelize.sync();
 
 module.exports = sequelize;

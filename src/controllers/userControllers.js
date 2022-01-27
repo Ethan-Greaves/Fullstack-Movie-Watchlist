@@ -1,10 +1,10 @@
 const bcrypt = require("bcryptjs/dist/bcrypt");
 const db = require("../config/database");
 const userModel = require("../models/userModel");
+const passport = require("passport");
 
 const registerUser = async (req, res) => {
 	const { username, password } = req.body;
-	console.log(username);
 	try {
 		const user = await userModel.findOne({ where: { username } });
 		if (user) return res.status(400).send("user already exists");
@@ -12,7 +12,7 @@ const registerUser = async (req, res) => {
 		const hashedPassword = await bcrypt.hash(password, salt);
 
 		await userModel.create({
-			username: username,
+			username,
 			password: hashedPassword,
 		});
 
@@ -22,22 +22,23 @@ const registerUser = async (req, res) => {
 	}
 };
 
-const loginUser = async (req, res) => {
-	const { username, password } = req.body;
-	try {
-		const user = await userModel.findOne({ where: { username } });
-		if (!user) return res.status(400).send("cannot find user");
-		//*user exists in database
-		if (await bcrypt.compare(password, user.password)) {
-			//* correct password
-			res.send("success");
-		} else {
-			//* incorrect password
-			res.send("incorrect password");
+const loginUser = async (req, res, next) => {
+	passport.authenticate("local", (err, user, info) => {
+		if (err) throw err;
+		if (!user) res.send("No user exists!");
+		else {
+			req.logIn(user, (err) => {
+				if (err) throw err;
+				req.session.user = req.user;
+				res.send("Successfully Authenticated!");
+				console.log(req.user);
+			});
 		}
-	} catch (error) {
-		res.status(400).send("error");
-	}
+	})(req, res, next);
 };
 
-module.exports = { registerUser, loginUser };
+const getUser = (req, res) => {
+	req.user ? res.status(200).send(req.user) : res.status(401);
+};
+
+module.exports = { registerUser, loginUser, getUser };
