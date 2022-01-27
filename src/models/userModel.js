@@ -14,23 +14,21 @@ const userSchema = db.define(
 		username: {
 			type: sequelize.STRING,
 			field: "user_name",
+			allowNull: false,
 		},
 		password: {
 			type: sequelize.STRING,
 			field: "password",
+			allowNull: false,
 		},
 	},
 	{
 		freezeTableName: true,
-		instanceMethods: {
-			generateHash(password) {
-				return bcrypt.hash(password, bcrypt.genSaltSync(8));
-			},
-			validPassword(password) {
-				return bcrypt.compare(password, this.password);
-			},
-		},
 	}
 );
+
+const generateHash = (password) => {};
+
+userSchema.beforeCreate(generateHash);
 
 module.exports = userSchema;
