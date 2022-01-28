@@ -1,20 +1,23 @@
 import axios from "axios";
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext, FC, useEffect, useState } from "react";
 
 interface IUserCreateContext {
 	isLoggedIn: boolean;
-	userData: object | null;
+	userData: {
+		username: string;
+	} | null;
 }
 
-interface IUserContext {
-	children: React.ReactNode;
-}
+const defaultState: IUserCreateContext = {
+	isLoggedIn: false,
+	userData: null,
+};
 
-const userCreateContext = createContext<IUserCreateContext | null>(null);
+export const userContext = createContext<IUserCreateContext>(defaultState);
 
-export const UserContextProvider = (props: IUserContext) => {
-	const [isLoggedIn, setisLoggedIn] = useState(false);
-	const [userData, setUserData] = useState(null);
+export const UserContextProvider: FC = ({ children }) => {
+	const [isLoggedIn, setisLoggedIn] = useState(defaultState.isLoggedIn);
+	const [userData, setUserData] = useState(defaultState.userData);
 
 	useEffect(() => {
 		axios({
@@ -25,18 +28,18 @@ export const UserContextProvider = (props: IUserContext) => {
 			if (res.status === 200) {
 				setUserData(res.data);
 				setisLoggedIn(true);
-            } 
+			}
 		});
 	}, []);
 
 	return (
-		<userCreateContext.Provider
+		<userContext.Provider
 			value={{
 				isLoggedIn,
 				userData,
 			}}
 		>
-			{props.children}
-		</userCreateContext.Provider>
+			{children}
+		</userContext.Provider>
 	);
 };

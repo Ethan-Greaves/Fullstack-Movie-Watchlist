@@ -1,5 +1,5 @@
 import React from "react";
-import { IconButton } from "../addButton/iconButton";
+import { IconButton } from "../iconButton/iconButton";
 import { Link } from "react-router-dom";
 import { IconDefinition } from "@fortawesome/free-solid-svg-icons";
 
@@ -9,7 +9,7 @@ interface IRouteButton {
 }
 
 /**
- * A button that will take the user to anew route on the page
+ * A button that will take the user to a new route on the page
  * @param props 
  * @returns 
  */

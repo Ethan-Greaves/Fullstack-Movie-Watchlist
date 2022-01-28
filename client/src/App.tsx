@@ -3,7 +3,7 @@ import { Route, Switch, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import { Archive } from "./pages/archive";
 import { Details } from "./pages/details/details";
-import { RecentlyAdded } from "./pages/recentlyAdded";
+import { Homepage } from "./pages/homepage/homepage";
 import { Login } from "./pages/login";
 import { Movies } from "./pages/movies";
 import { Register } from "./pages/register";
@@ -21,7 +21,7 @@ function App() {
 			<Switch location={location} key={location.pathname}>
 				<PageAnimationProvider>
 					<UserContextProvider>
-						<Route path="/" exact component={RecentlyAdded} />
+						<Route path="/" exact component={Homepage} />
 						<Route path="/addToList" exact component={AddToList} />
 						<Route path="/archive" exact component={Archive} />
 						<Route path="/details/:id" exact component={Details} />

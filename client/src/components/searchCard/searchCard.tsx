@@ -7,7 +7,7 @@ import UseMovieDatabaseImg from "../../hooks/useMovieDatabaseImg";
 import UseReleaseYear from "../../hooks/useReleaseYear";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { IconButton } from "../buttons/addButton/iconButton";
+import { IconButton } from "../buttons/iconButton/iconButton";
 
 interface ISearchCard {
 	title: string | undefined;

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Col, Container, Row, Button } from "react-bootstrap";
 import { useLocation } from "react-router-dom";
-import { IconButton } from "../../components/buttons/addButton/iconButton";
+import { IconButton } from "../../components/buttons/iconButton/iconButton";
 import { StarsRating } from "../../components/starsRating/starsRating";
 import { UseFetch } from "../../hooks/useFetch";
 import UseMovieDatabaseImg from "../../hooks/useMovieDatabaseImg";

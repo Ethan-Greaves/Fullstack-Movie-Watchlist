@@ -1,5 +1,5 @@
 import React from "react";
-import { IconButton } from "../addButton/iconButton";
+import { IconButton } from "../iconButton/iconButton";
 import { faSignOutAlt, IconDefinition } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 
