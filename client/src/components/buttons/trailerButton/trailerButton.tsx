@@ -11,7 +11,7 @@ interface ITrailerButton {
 }
 
 export const TrailerButton = (props: ITrailerButton) => {
-	const [show, setShow] = React.useState(false);
+	const [show, setShow] = React.useState<boolean>(false);
 	const handleModal = () => setShow((show) => !show);
 
 	return (
