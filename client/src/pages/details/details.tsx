@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Col, Container, Row, Button } from "react-bootstrap";
 import { useLocation } from "react-router-dom";
-import { IconButton } from "../../components/addButton/iconButton";
+import { IconButton } from "../../components/buttons/addButton/iconButton";
 import { StarsRating } from "../../components/starsRating/starsRating";
 import { UseFetch } from "../../hooks/useFetch";
 import UseMovieDatabaseImg from "../../hooks/useMovieDatabaseImg";
@@ -14,8 +14,8 @@ import UseStarRating from "../../hooks/useStarRating";
 import { DetailsSection } from "../../wrappers/detailsSection/detailsSection";
 import { ExitButton } from "../../components/exitButton/exitButton";
 import { InfoList } from "../../components/infoList/infoList";
-import { RouteButton } from "../../components/routeButton/routeButton";
-import { TrailerButton } from "../../components/trailerButton/trailerButton";
+import { RouteButton } from "../../components/buttons/routeButton/routeButton";
+import { TrailerButton } from "../../components/buttons/trailerButton/trailerButton";
 
 interface IMediaInfo {
 	title: string;

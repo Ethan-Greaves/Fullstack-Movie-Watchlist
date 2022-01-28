@@ -15,19 +15,7 @@ const init = (passport) => {
 		}
 	};
 
-	passport.use(
-		new localStrategy(
-			{
-				usernameField: "username",
-				passwordField: "password",
-			},
-			authenticateUser
-		)
-	);
-
-	// passport.serializeUser((user, done) => {
-	// 	done(null, user.id);
-	// });
+	passport.use(new localStrategy(authenticateUser));
 
 	passport.serializeUser(function (user, done) {
 		done(null, user);

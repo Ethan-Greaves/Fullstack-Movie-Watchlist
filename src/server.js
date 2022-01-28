@@ -7,12 +7,10 @@ const db = require("./config/database");
 const initPassport = require("./config/passport");
 const passport = require("passport");
 const bodyParser = require("body-parser");
-const crossDomain = require("./config/crossDomain");
 const session = require("express-session");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 
-app.use(crossDomain);
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(

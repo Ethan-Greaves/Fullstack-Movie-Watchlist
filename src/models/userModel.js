@@ -27,8 +27,4 @@ const userSchema = db.define(
 	}
 );
 
-const generateHash = (password) => {};
-
-userSchema.beforeCreate(generateHash);
-
 module.exports = userSchema;

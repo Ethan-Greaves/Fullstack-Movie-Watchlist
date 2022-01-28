@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { IconButton } from "../components/addButton/iconButton";
+import { IconButton } from "../components/buttons/addButton/iconButton";
 import { Button, Container } from "react-bootstrap";
 import { AbsoluteBottomRight } from "../wrappers/absoluteBottomRight";
 import { PageAnimated } from "../wrappers/pageAnimated";
@@ -7,8 +7,9 @@ import { pageAnimationContext } from "../contexts/pageAnimationContext";
 import testTransition from "./animations/testTransition";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { StarsRating } from "../components/starsRating/starsRating";
-import { RouteButton } from "../components/routeButton/routeButton";
+import { RouteButton } from "../components/buttons/routeButton/routeButton";
 import axios from "axios";
+import { LogoutButton } from "../components/buttons/logoutButton/logoutButton";
 
 export const RecentlyAdded = () => {
 	const { changeAnimation } = useContext(pageAnimationContext);
@@ -36,12 +37,12 @@ export const RecentlyAdded = () => {
 			<Container>
 				<h1>Homepage</h1>
 				{data ? <h1>Welcome Back {data.username}</h1> : null}
-
 				<p>
 					Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae, fuga iure.
 					Iure, ea? Optio atque, nostrum accusantium alias deleniti eius? Iusto recusandae
 					aliquam, facere unde labore repellendus dignissimos commodi sit?
 				</p>
+				<LogoutButton />
 
 				<AbsoluteBottomRight>
 					<RouteButton link="/addToList" icon={faPlus} />

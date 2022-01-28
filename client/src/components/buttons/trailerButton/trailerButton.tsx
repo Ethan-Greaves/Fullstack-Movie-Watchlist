@@ -2,7 +2,6 @@ import React from "react";
 import { IconButton } from "../addButton/iconButton";
 import { IconDefinition } from "@fortawesome/free-solid-svg-icons";
 import { Button, Modal } from "react-bootstrap";
-import Iframe from "react-iframe";
 import "./trailerButton.scss";
 
 interface ITrailerButton {

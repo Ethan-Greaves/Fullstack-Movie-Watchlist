@@ -13,11 +13,7 @@ interface IIconButton {
 export const IconButton = (props: IIconButton) => {
 	return (
 		<motion.div whileHover={{ scale: 0.9 }}>
-			<Button
-				variant="primary"
-				className="add-button"
-				disabled={props.isDisabled}
-			>
+			<Button variant="primary" className="add-button" disabled={props.isDisabled || false}>
 				<FontAwesomeIcon icon={props.icon}></FontAwesomeIcon>
 			</Button>
 		</motion.div>
