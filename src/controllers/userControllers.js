@@ -23,15 +23,17 @@ const registerUser = async (req, res) => {
 };
 
 const loginUser = async (req, res, next) => {
+	const failedMsg = "Incorrect username or password";
+	let success = false;
 	passport.authenticate("local", (err, user, info) => {
 		if (err) throw err;
-		if (!user) res.send("No user exists!");
+		if (!user) res.json({ failedMsg, success });
 		else {
 			req.logIn(user, (err) => {
 				if (err) throw err;
+				success = true;
 				req.session.user = req.user;
-				res.send("Successfully Authenticated!");
-				console.log(req.user);
+				res.json({ success });
 			});
 		}
 	})(req, res, next);
@@ -40,7 +42,7 @@ const loginUser = async (req, res, next) => {
 const logoutUser = (req, res) => {
 	req.logout();
 	req.session.destroy();
-	console.log("user logged out");
+	res.send("user logged out!");
 };
 
 const getUser = (req, res) => {

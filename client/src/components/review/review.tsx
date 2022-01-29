@@ -15,7 +15,7 @@ interface IReview {
 
 export const Review = (props: IReview) => {
 	return (
-		<Accordion defaultActiveKey={"0"} className="review-accordion">
+		<Accordion className="review-accordion">
 			<Accordion.Item eventKey={props.eventKey.toString()}>
 				<Accordion.Header>
 					<Row className="align-items-center w-100">

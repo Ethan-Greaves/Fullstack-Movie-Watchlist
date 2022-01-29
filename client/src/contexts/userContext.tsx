@@ -3,6 +3,7 @@ import React, { createContext, FC, useEffect, useState } from "react";
 
 interface IUserCreateContext {
 	isLoggedIn: boolean;
+	setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
 	userData: {
 		username: string;
 	} | null;
@@ -10,13 +11,14 @@ interface IUserCreateContext {
 
 const defaultState: IUserCreateContext = {
 	isLoggedIn: false,
+	setIsLoggedIn: () => {},
 	userData: null,
 };
 
 export const userContext = createContext<IUserCreateContext>(defaultState);
 
 export const UserContextProvider: FC = ({ children }) => {
-	const [isLoggedIn, setisLoggedIn] = useState(defaultState.isLoggedIn);
+	const [isLoggedIn, setIsLoggedIn] = useState(defaultState.isLoggedIn);
 	const [userData, setUserData] = useState(defaultState.userData);
 
 	useEffect(() => {
@@ -27,15 +29,18 @@ export const UserContextProvider: FC = ({ children }) => {
 		}).then((res) => {
 			if (res.status === 200) {
 				setUserData(res.data);
-				setisLoggedIn(true);
+				setIsLoggedIn(true);
 			}
 		});
 	}, []);
+
+	console.log(isLoggedIn);
 
 	return (
 		<userContext.Provider
 			value={{
 				isLoggedIn,
+				setIsLoggedIn,
 				userData,
 			}}
 		>

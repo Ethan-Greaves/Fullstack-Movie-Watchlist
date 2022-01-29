@@ -12,9 +12,18 @@ import { Settings } from "./pages/settings";
 import { AddToList } from "./pages/addToList";
 import { PageAnimationProvider } from "./contexts/pageAnimationContext";
 import { UserContextProvider } from "./contexts/userContext";
+import WebFont from "webfontloader";
 
 function App() {
 	const location = useLocation();
+
+	useEffect(() => {
+		WebFont.load({
+			google: {
+				families: ["Oswald", "sans-serif", "Montserrat"],
+			},
+		});
+	}, []);
 
 	return (
 		<AnimatePresence exitBeforeEnter>
